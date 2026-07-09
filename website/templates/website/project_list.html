@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects | Mark Angelo Ravao</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            Mark Ravao
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+        </ul>
+
+    </nav>
+
+    <section id="projects">
+
+        <p class="section__text__p1">
+            Browse My
+        </p>
+
+        <h1 class="title">
+            Projects
+        </h1>
+
+        <div class="about-containers">
+
+            {% for project in projects %}
+
+            <div class="details-container color-container">
+
+                <h2 class="project-title">
+                    {{ project.project_name }}
+                </h2>
+
+                <br>
+
+                <a
+                    href="{% url 'project_detail' project.pk %}"
+                    class="btn btn-color-1">
+
+                    View Details
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
