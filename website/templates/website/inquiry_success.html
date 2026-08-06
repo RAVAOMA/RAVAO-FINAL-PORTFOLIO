@@ -1,20 +1,50 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Project</title>
+    <title>Inquiry Submitted</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
 </head>
+
 <body>
-    <h1>Thank You!</h1>
 
-    <p>Your inquiry has been submitted successfully.</p>
+    <nav class="page-nav">
+        <a class="page-logo" href="{% url 'home' %}">
+            Mark Ravao
+        </a>
 
-    <a href="{% url 'home' %}">Return to Home</a>
+        <div class="page-nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'project_list' %}">Projects</a>
+            <a href="{% url 'testimony_list' %}">Testimonials</a>
+        </div>
+    </nav>
+
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Inquiry Submitted</h1>
+
+            <p class="form-description">
+                Thank you for reaching out. Your inquiry has been submitted successfully.
+            </p>
+
+            <div class="form-actions">
+                <a class="page-btn" href="{% url 'inquiry_create' %}">
+                    Send Another Inquiry
+                </a>
+
+                <a class="page-btn primary-btn" href="{% url 'home' %}">
+                    Return to Home
+                </a>
+            </div>
+        </section>
+    </main>
+
 </body>
 </html>
-
