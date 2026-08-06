@@ -678,4 +678,184 @@ hr{
     margin-top: 1rem;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f7f7f7;
+    color: #222;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 8%;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.page-logo {
+    color: #222;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.page-nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.page-nav-links a {
+    color: #222;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.page-nav-links a:hover {
+    color: #777;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+.form-page {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1.5rem;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 2.5rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 2rem;
+}
+
+.form-container h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.form-description {
+    margin-bottom: 2rem;
+    color: #666;
+    text-align: center;
+}
+
+.form-container form p {
+    margin-bottom: 1.25rem;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font: inherit;
+    border: 1px solid #aaa;
+    border-radius: 0.75rem;
+    outline: none;
+}
+
+.form-container textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #222;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    padding: 0.8rem 1.4rem;
+    font: inherit;
+    font-weight: 600;
+    color: #222;
+    background-color: white;
+    border: 1px solid #222;
+    border-radius: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.page-btn:hover {
+    color: white;
+    background-color: #222;
+}
+
+.primary-btn {
+    color: white;
+    background-color: #222;
+}
+
+.primary-btn:hover {
+    color: #222;
+    background-color: white;
+}
+
+.card-grid {
+    width: min(1100px, 100%);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.content-card {
+    padding: 1.75rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+}
+
+.content-card h2 {
+    margin-top: 0;
+}
+
+.empty-message {
+    text-align: center;
+    color: #666;
+}
+
+@media screen and (max-width: 700px) {
+    .page-nav {
+        padding: 1.25rem;
+    }
+
+    .page-nav-links {
+        gap: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+        border-radius: 1.25rem;
+    }
+}
+
 

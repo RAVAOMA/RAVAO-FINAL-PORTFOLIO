@@ -1,20 +1,50 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
+
+    <title>Add Project</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
 </head>
+
 <body>
-    <h1>Contact or Inquiry</h1>
+    <nav class="page-nav">
+        <a class="page-logo" href="{% url 'home' %}">Mark Ravao</a>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+        <div class="page-nav-links">
+            <a href="{% url 'project_list' %}">Projects</a>
+            <a href="{% url 'testimony_list' %}">Testimonies</a>
+        </div>
+    </nav>
 
-        <button type="submit">Send Inquiry</button>
-    </form>
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Contact Me</h1>
 
-    <a href="{% url 'home' %}">Back to Home</a>
+            <p class="form-description">
+                Send an inquiry about my projects and services.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <div class="form-actions">
+                    <a class="page-btn" href="{% url 'home' %}">
+                        Cancel
+                    </a>
+
+                    <button class="page-btn primary-btn" type="submit">
+                        Send Inquiry
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

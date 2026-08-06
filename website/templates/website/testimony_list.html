@@ -1,34 +1,80 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonies</title>
+
+    <title>Testimonials</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
 </head>
+
 <body>
-    <h1>Testimonies</h1>
 
-    <a href="{% url 'testimony_create' %}">
-        Leave a Testimony
-    </a>
+    <nav class="page-nav">
+        <a class="page-logo" href="{% url 'home' %}">
+            Mark Ravao
+        </a>
 
-    {% for testimony in testimonies %}
-        <div>
-            <h2>{{ testimony.full_name }}</h2>
+        <div class="page-nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'project_list' %}">Projects</a>
+            <a href="{% url 'inquiry_create' %}">Inquiry</a>
+        </div>
+    </nav>
 
-            <p>
-                {{ testimony.content|truncatewords:20 }}
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Testimonials</h1>
+
+            <p class="form-description">
+                Read what others have shared about their experience.
             </p>
 
-            <a href="{% url 'testimony_detail' testimony.pk %}">
-                Read More
-            </a>
-        </div>
-    {% empty %}
-        <p>No testimonies have been submitted yet.</p>
-    {% endfor %}
+            <div class="form-actions">
+                <a class="page-btn primary-btn"
+                   href="{% url 'testimony_create' %}">
+                    Leave a Testimonial
+                </a>
+            </div>
 
-    <a href="{% url 'home' %}">Back to Home</a>
+            <div class="card-grid">
+                {% for testimony in testimonies %}
+
+                    <article class="content-card">
+                        <h2>{{ testimony.full_name }}</h2>
+
+                        <p>
+                            {{ testimony.content|truncatewords:20 }}
+                        </p>
+
+                        <div class="form-actions">
+                            <a class="page-btn"
+                               href="{% url 'testimony_detail' testimony.pk %}">
+                                Read More
+                            </a>
+                        </div>
+                    </article>
+
+                {% empty %}
+
+                    <p class="empty-message">
+                        No testimonials have been submitted yet.
+                    </p>
+
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <a class="page-btn" href="{% url 'home' %}">
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </main>
+
 </body>
 </html>
-

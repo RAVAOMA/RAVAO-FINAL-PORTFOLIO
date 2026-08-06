@@ -25,6 +25,10 @@
                 <li><a href="#experience">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'project_list' %}">Projects</a></li>
+                <li><a href="{% url 'project_create' %}">Add Project</a></li>
+                <li><a href="{% url 'inquiry_create' %}">Inquiry</a></li>
+                <li><a href="{% url 'testimony_list' %}">Testimonies</a></li> 
             </ul>
         </div>
     </nav>
@@ -41,13 +45,18 @@
                 <span></span>
                 <span></span>
             </div>
+            
+<div class="menu-links">
+    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+    <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="toggleMenu()">Portfolio</a></li>
+    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
 
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
+    <li><a href="{% url 'project_list' %}" onclick="toggleMenu()">All Projects</a></li>
+    <li><a href="{% url 'project_create' %}" onclick="toggleMenu()">Add Project</a></li>
+    <li><a href="{% url 'inquiry_create' %}" onclick="toggleMenu()">Inquiry</a></li>
+    <li><a href="{% url 'testimony_list' %}" onclick="toggleMenu()">Testimonials</a></li>
+</div>
 
         </div>
     </nav>
@@ -682,15 +691,6 @@
     <!-- ================= JAVASCRIPT ================= -->
 
     <script src="{% static 'js/script.js' %}"></script>
-
-   <!-- ================= QUIZ 3 ================= -->
-
-    <a href="{% url 'project_create' %}">Add Project</a>
-
-<a href="{% url 'inquiry_create' %}">Contact Me</a>
-
-<a href="{% url 'testimony_list' %}">Testimonials</a>
-
 
 </body>
 </html>
