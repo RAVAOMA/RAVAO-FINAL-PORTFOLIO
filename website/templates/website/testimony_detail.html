@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ testimony.full_name }}</title>
+</head>
+<body>
+    <h1>{{ testimony.full_name }}</h1>
+
+    <p>{{ testimony.content }}</p>
+
+    <a href="{% url 'testimony_list' %}">
+        Back to Testimonies
+    </a>
+</body>
+</html>
+

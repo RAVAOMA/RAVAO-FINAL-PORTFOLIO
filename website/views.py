@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView
+
+from .models import PersonalInformation, Project, Inquiry, Testimony
 from .forms import ProjectForm, InquiryForm, TestimonyForm
 
 def home(request):
@@ -77,5 +80,15 @@ def testimony_create(request):
         "website/testimony_form.html",
         {"form": form},
     )
+
+class TestimonyListView(ListView):
+    model = Testimony
+    template_name = "website/testimony_list.html"
+    context_object_name = "testimonies"
+
+class TestimonyDetailView(DetailView):
+    model = Testimony
+    template_name = "website/testimony_detail.html"
+    context_object_name = "testimony"
 
 

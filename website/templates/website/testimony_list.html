@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonies</title>
+</head>
+<body>
+    <h1>Testimonies</h1>
+
+    <a href="{% url 'testimony_create' %}">
+        Leave a Testimony
+    </a>
+
+    {% for testimony in testimonies %}
+        <div>
+            <h2>{{ testimony.full_name }}</h2>
+
+            <p>
+                {{ testimony.content|truncatewords:20 }}
+            </p>
+
+            <a href="{% url 'testimony_detail' testimony.pk %}">
+                Read More
+            </a>
+        </div>
+    {% empty %}
+        <p>No testimonies have been submitted yet.</p>
+    {% endfor %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
+
