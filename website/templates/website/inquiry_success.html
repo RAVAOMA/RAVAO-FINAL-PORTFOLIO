@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inquiry Submitted</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
+</head>
+
+<body>
+
+    {% include "website/_page_nav.html" %}
+
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Inquiry Submitted</h1>
+
+            <p class="form-description">
+                Thank you for reaching out. Your inquiry has been submitted successfully.
+            </p>
+
+            <div class="form-actions">
+                <a class="page-btn" href="{% url 'inquiry_create' %}">
+                    Send Another Inquiry
+                </a>
+
+                <a class="page-btn primary-btn" href="{% url 'home' %}">
+                    Return to Home
+                </a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

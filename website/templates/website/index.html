@@ -24,7 +24,9 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'project_create' %}">Add Project</a></li>
+                <li><a href="{% url 'inquiry_create' %}">Contact</a></li>
+                <li><a href="{% url 'testimony_list' %}">Testimonials</a></li>
             </ul>
         </div>
     </nav>
@@ -41,13 +43,15 @@
                 <span></span>
                 <span></span>
             </div>
-
-            <div class="menu-links">
+            
+            <ul class="menu-links">
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
                 <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
+                <li><a href="{% url 'project_create' %}" onclick="toggleMenu()">Add Project</a></li>
+                <li><a href="{% url 'inquiry_create' %}" onclick="toggleMenu()">Contact</a></li>
+                <li><a href="{% url 'testimony_list' %}" onclick="toggleMenu()">Testimonials</a></li>
+            </ul>
 
         </div>
     </nav>
@@ -438,143 +442,45 @@
     <section id="projects">
 
         <p class="section__text__p1">Browse My Recent</p>
-
         <h1 class="title">Projects</h1>
 
         <div class="experience-details-container">
+            <div class="about-containers project-grid">
+                {% for project in projects %}
+                    <div class="details-container color-container">
+                        <h2 class="experience-sub-title project-title">
+                            {{ project.project_name }}
+                        </h2>
 
-            <div class="about-containers">
+                        <p>{{ project.description|truncatewords:40 }}</p>
+                        <p><strong>Technology stack:</strong> {{ project.tech_stack }}</p>
 
-                <!-- Project 1 -->
-
-                <div class="details-container color-container">
-
-                    <div class="article-container">
-
-                        <img
-                            src="{% static 'images/project-1.png' %}"
-                            alt="Portfolio Website"
-                            class="project-img"
-                        />
-
+                        <div class="btn-container">
+                            <a class="btn btn-color-1"
+                               href="{% url 'project_detail' project.pk %}">
+                                View Details
+                            </a>
+                            <a class="btn btn-color-2"
+                               href="{{ project.link }}"
+                               target="_blank" rel="noopener noreferrer">
+                                Visit Project
+                            </a>
+                        </div>
                     </div>
-
-                    <h2 class="experience-sub-title project-title">
-                        Personal Portfolio Website
-                    </h2>
-
-                    <p>
-                        A responsive personal portfolio built using
-                        HTML, CSS, JavaScript, and Django.
-                        It showcases my skills, projects, leadership
-                        experience, and achievements as a
-                        Computer Engineering student.
-                    </p>
-
-                    <br>
-
-                    <div class="btn-container">
-
-                        <button
-                            class="btn btn-color-2 project-btn"
-                            onclick="window.open('https://github.com/RAVAOMA/RAVAO-PORTFOLIO')">
-                            GitHub
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- Project 2 -->
-
-                <div class="details-container color-container">
-
-                    <div class="article-container">
-
-                        <img
-                            src="{% static 'images/project-2.png' %}"
-                            alt="Arduino Project"
-                            class="project-img"
-                        />
-
-                    </div>
-
-                    <h2 class="experience-sub-title project-title">
-                        Arduino Embedded System
-                    </h2>
-
-                    <p>
-                        An embedded systems project utilizing
-                        Arduino sensors and microcontrollers to
-                        automate tasks and demonstrate hardware-
-                        software integration.
-                    </p>
-
-                    <br>
-
-                    <div class="btn-container">
-
-                        <button
-                            class="btn btn-color-2 project-btn"
-                            onclick="window.open('https://github.com/RAVAOMA/RAVAO-PORTFOLIO')">
-                            GitHub
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- Project 3 -->
-
-                <div class="details-container color-container">
-
-                    <div class="article-container">
-
-                        <img
-                            src="{% static 'images/project-3.png' %}"
-                            alt="Web Application"
-                            class="project-img"
-                        />
-
-                    </div>
-
-                    <h2 class="experience-sub-title project-title">
-                        Future Django Web Application
-                    </h2>
-
-                    <p>
-                        This section is reserved for my upcoming
-                        full-stack Django project featuring database
-                        integration, authentication, and responsive
-                        design.
-                    </p>
-
-                    <br>
-
-                    <div class="btn-container">
-
-                        <button
-                            class="btn btn-color-2 project-btn"
-                            disabled>
-                            Coming Soon
-                        </button>
-
-                    </div>
-
-                </div>
-
+                {% empty %}
+                    <p class="empty-message">No projects have been added yet.</p>
+                {% endfor %}
             </div>
-
         </div>
-        
-            </div>
+
         <div class="btn-container">
-            <button
-               class="btn btn-color-1"
-               onclick="location.href='{% url 'project_list' %}'">
-               View All Projects
-            </button>
-         </div>
+            <a class="btn btn-color-1" href="{% url 'project_list' %}">
+                View All Projects
+            </a>
+            <a class="btn btn-color-2" href="{% url 'project_create' %}">
+                Add Project
+            </a>
+        </div>
 
     </section>
 
@@ -650,6 +556,14 @@
 
             </div>
 
+        </div>
+
+        <div class="btn-container">
+            <a class="btn btn-color-1" href="{% url 'inquiry_create' %}">
+                Send an Inquiry
+            </a>
+        </div>
+
     </section>
 
     <!-- ================= FOOTER ================= -->
@@ -668,7 +582,9 @@
 
                     <li><a href="#projects">Projects</a></li>
 
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="{% url 'inquiry_create' %}">Contact</a></li>
+                    <li><a href="{% url 'project_create' %}">Add Project</a></li>
+                    <li><a href="{% url 'testimony_list' %}">Testimonials</a></li>
 
                 </ul>
 
