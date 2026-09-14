@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
-from .models import PersonalInformation, Project, Inquiry, Testimony
+from .models import PersonalInformation, Project, Testimony
 from .forms import ProjectForm, InquiryForm, TestimonyForm
 
 def home(request):
     personal = PersonalInformation.objects.first()
+    projects = Project.objects.order_by("-pk")
 
     return render(request, "website/index.html", {
         "personal": personal,
+        "projects": projects,
     })
 
 
@@ -86,9 +88,11 @@ class TestimonyListView(ListView):
     template_name = "website/testimony_list.html"
     context_object_name = "testimonies"
 
-class TestimonyDetailView(DetailView):
-    model = Testimony
-    template_name = "website/testimony_detail.html"
-    context_object_name = "testimony"
+def testimony_detail(request, pk):
+    testimony = get_object_or_404(Testimony, pk=pk)
+
+    return render(request, "website/testimony_detail.html", {
+        "testimony": testimony,
+    })
 
 

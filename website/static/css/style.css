@@ -121,7 +121,8 @@ a:hover{
 }
 
 .menu-links.open{
-    max-height:300px;
+    max-height:min(70vh, 480px);
+    overflow-y:auto;
 }
 
 .menu-links li{
@@ -690,6 +691,10 @@ body {
 }
 
 .page-nav {
+    height: auto;
+    min-height: 90px;
+    gap: 1rem;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -706,6 +711,7 @@ body {
 }
 
 .page-nav-links {
+    flex-wrap: wrap;
     display: flex;
     gap: 1.5rem;
 }
@@ -859,3 +865,27 @@ body {
 }
 
 
+/* Database project cards and contact form fields */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.project-grid .color-container {
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.project-grid .btn-container {
+    flex-wrap: wrap;
+}
+
+.form-field {
+    margin-bottom: 1.25rem;
+}
+
+.form-field .errorlist {
+    margin: 0.4rem 0 0 1.25rem;
+    color: #b91c1c;
+}

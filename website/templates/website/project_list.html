@@ -18,19 +18,7 @@
 
 <body>
 
-    <nav>
-
-        <div class="logo">
-            Mark Ravao
-        </div>
-
-        <ul class="nav-links">
-
-            <li><a href="{% url 'home' %}">Home</a></li>
-
-        </ul>
-
-    </nav>
+    {% include "website/_page_nav.html" %}
 
     <section id="projects">
 
@@ -42,7 +30,7 @@
             Projects
         </h1>
 
-        <div class="about-containers">
+        <div class="about-containers project-grid">
 
             {% for project in projects %}
 
@@ -64,6 +52,8 @@
 
             </div>
 
+            {% empty %}
+                <p class="empty-message">No projects have been added yet.</p>
             {% endfor %}
 
         </div>

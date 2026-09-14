@@ -6,21 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Project</title>
+    <title>Leave a Testimonial | Mark Ravao</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
 </head>
 
 <body>
-    <nav class="page-nav">
-        <a class="page-logo" href="{% url 'home' %}">Mark Ravao</a>
-
-        <div class="page-nav-links">
-            <a href="{% url 'project_list' %}">Projects</a>
-            <a href="{% url 'testimony_list' %}">Testimonies</a>
-        </div>
-    </nav>
+    {% include "website/_page_nav.html" %}
 
     <main class="form-page">
         <section class="form-container">
