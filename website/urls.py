@@ -25,7 +25,7 @@ urlpatterns = [
 
     path(
         "testimonies/<int:pk>/",
-        views.TestimonyDetailView.as_view(),
+        views.testimony_detail,
         name="testimony_detail",
     ),
 ]

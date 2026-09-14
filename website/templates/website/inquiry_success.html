@@ -14,17 +14,7 @@
 
 <body>
 
-    <nav class="page-nav">
-        <a class="page-logo" href="{% url 'home' %}">
-            Mark Ravao
-        </a>
-
-        <div class="page-nav-links">
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'project_list' %}">Projects</a>
-            <a href="{% url 'testimony_list' %}">Testimonials</a>
-        </div>
-    </nav>
+    {% include "website/_page_nav.html" %}
 
     <main class="form-page">
         <section class="form-container">

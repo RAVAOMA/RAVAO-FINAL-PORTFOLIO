@@ -17,16 +17,7 @@
 
 <body>
 
-    <nav>
-
-        <div class="logo">Mark Ravao</div>
-
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'project_list' %}">Projects</a></li>
-        </ul>
-
-    </nav>
+    {% include "website/_page_nav.html" %}
 
     <section id="project-detail">
 
