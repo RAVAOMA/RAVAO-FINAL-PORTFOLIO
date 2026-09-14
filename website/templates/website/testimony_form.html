@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leave a Testimonial | Mark Ravao</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
+</head>
+
+<body>
+    {% include "website/_page_nav.html" %}
+
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Leave a Testimony</h1>
+
+            <p class="form-description">
+                Share your experience or feedback.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <div class="form-actions">
+                    <a class="page-btn" href="{% url 'testimony_list' %}">
+                        Cancel
+                    </a>
+
+                    <button class="page-btn primary-btn" type="submit">
+                        Submit Testimony
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

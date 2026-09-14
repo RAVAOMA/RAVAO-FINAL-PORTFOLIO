@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Testimonials</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
+</head>
+
+<body>
+
+    {% include "website/_page_nav.html" %}
+
+    <main class="form-page">
+        <section class="form-container">
+            <h1>Testimonials</h1>
+
+            <p class="form-description">
+                Read what others have shared about their experience.
+            </p>
+
+            <div class="form-actions">
+                <a class="page-btn primary-btn"
+                   href="{% url 'testimony_create' %}">
+                    Leave a Testimonial
+                </a>
+            </div>
+
+            <div class="card-grid">
+                {% for testimony in testimonies %}
+
+                    <article class="content-card">
+                        <h2>{{ testimony.full_name }}</h2>
+
+                        <p>
+                            {{ testimony.content|truncatewords:20 }}
+                        </p>
+
+                        <div class="form-actions">
+                            <a class="page-btn"
+                               href="{% url 'testimony_detail' testimony.pk %}">
+                                Read More
+                            </a>
+                        </div>
+                    </article>
+
+                {% empty %}
+
+                    <p class="empty-message">
+                        No testimonials have been submitted yet.
+                    </p>
+
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <a class="page-btn" href="{% url 'home' %}">
+                    Back to Home
+                </a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
