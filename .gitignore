@@ -1,6 +1,7 @@
 
-# macOS files
+# Operating system files
 .DS_Store
+Thumbs.db
 
 # Python cache files
 __pycache__/
@@ -8,3 +9,20 @@ __pycache__/
 
 # Virtual environment
 venv/
+.venv/
+env/
+
+# Local configuration and data (the example is safe to commit)
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+*.sqlite
+*.db
+*.log
+staticfiles/
+media/
+.coverage
+htmlcov/
+.pytest_cache/

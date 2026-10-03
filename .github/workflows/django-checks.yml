@@ -2,7 +2,6 @@ name: Django checks
 
 on:
   pull_request:
-    branches: [main, development, quiz3]
 
 permissions:
   contents: read
@@ -15,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Check out the pull request
         uses: actions/checkout@v4
@@ -25,9 +24,15 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Create a private local environment
+        run: python scripts/setup_env.py
+      - name: Migrate a fresh database
+        run: python manage.py migrate --noinput
       - name: Check Django configuration
         run: python manage.py check
       - name: Check for missing migrations
         run: python manage.py makemigrations --check --dry-run
       - name: Test portfolio flows
         run: python manage.py test website --verbosity 2
+      - name: Collect static assets for deployment
+        run: python manage.py collectstatic --noinput

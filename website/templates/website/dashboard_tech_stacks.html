@@ -1,0 +1,20 @@
+{% extends "website/dashboard_base.html" %}
+{% block title %}Tech stacks{% endblock %}
+{% block content %}
+    <div class="page-heading"><div><p class="eyebrow">YOUR TOOLKIT</p><h1>Tech stacks</h1><p class="subtitle">Create a technology once. Use it across all your projects.</p></div><a class="button primary" href="{% url 'tech_stack_create' %}">+ Create tech stack</a></div>
+    <section class="panel">
+        <div class="panel-heading"><h2>All tech stacks <span class="count">{{ tech_stacks|length }}</span></h2></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Tech stacks table">
+            <table>
+                <thead><tr><th scope="col">Tech Stack Name</th><th scope="col">Project It Was Used</th><th scope="col">Date Added</th></tr></thead>
+                <tbody>
+                    {% for stack in tech_stacks %}<tr>
+                        <th scope="row">{{ stack.name }}</th>
+                        <td>{% for project in stack.projects.all %}<a href="{% url 'project_detail' project.pk %}">{{ project.project_name }}</a>{% if not forloop.last %}, {% endif %}{% empty %}<span class="muted">Not used yet</span>{% endfor %}</td>
+                        <td><time datetime="{{ stack.created_at|date:'c' }}">{{ stack.created_at|date:"M j, Y" }}</time></td>
+                    </tr>{% empty %}<tr><td colspan="3"><div class="empty-state"><h3>Start building your toolkit.</h3><p>Add a language, framework, or tool you use.</p><a href="{% url 'tech_stack_create' %}">Create your first tech stack →</a></div></td></tr>{% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

@@ -24,7 +24,11 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="{% url 'project_create' %}">Add Project</a></li>
+                {% if request.user.is_active and request.user.is_superuser %}
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                {% else %}
+                <li><a href="{% url 'owner_sign_in' %}">Owner sign-in</a></li>
+                {% endif %}
                 <li><a href="{% url 'inquiry_create' %}">Contact</a></li>
                 <li><a href="{% url 'testimony_list' %}">Testimonials</a></li>
             </ul>
@@ -48,7 +52,11 @@
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
                 <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="{% url 'project_create' %}" onclick="toggleMenu()">Add Project</a></li>
+                {% if request.user.is_active and request.user.is_superuser %}
+                <li><a href="{% url 'dashboard' %}" onclick="toggleMenu()">Dashboard</a></li>
+                {% else %}
+                <li><a href="{% url 'owner_sign_in' %}" onclick="toggleMenu()">Owner sign-in</a></li>
+                {% endif %}
                 <li><a href="{% url 'inquiry_create' %}" onclick="toggleMenu()">Contact</a></li>
                 <li><a href="{% url 'testimony_list' %}" onclick="toggleMenu()">Testimonials</a></li>
             </ul>
@@ -74,9 +82,11 @@
             </p>
 
             <h1 class="title">
+                {% if personal %}
                 {{ personal.first_name }}
                 {{ personal.middle_name }}
                 {{ personal.last_name }}
+                {% else %}Mark Angelo Ravao{% endif %}
             </h1>
 
             <p class="section__text__p2">
@@ -188,7 +198,7 @@
                 <div class="text-container">
 
                     <p>
-                         {{ personal.summary }}
+                         {{ personal.summary|default:"Computer Engineering student and student leader at Holy Angel University. Explore my projects, see the tools I use, and get in touch to work together." }}
                     </p>
 
                 </div>
@@ -453,7 +463,7 @@
                         </h2>
 
                         <p>{{ project.description|truncatewords:40 }}</p>
-                        <p><strong>Technology stack:</strong> {{ project.tech_stack }}</p>
+                        <p><strong>Technology stack:</strong> {{ project.tech_stack_names }}</p>
 
                         <div class="btn-container">
                             <a class="btn btn-color-1"
@@ -477,9 +487,11 @@
             <a class="btn btn-color-1" href="{% url 'project_list' %}">
                 View All Projects
             </a>
+            {% if request.user.is_active and request.user.is_superuser %}
             <a class="btn btn-color-2" href="{% url 'project_create' %}">
                 Add Project
             </a>
+            {% endif %}
         </div>
 
     </section>
@@ -509,9 +521,9 @@
                 />
 
                 <p>
-                    <a href="mailto:{{ personal.email }}">
+                    {% if personal.email %}<a href="mailto:{{ personal.email }}">
                         {{ personal.email }}
-                    </a>
+                    </a>{% else %}<a href="{% url 'inquiry_create' %}">Send an inquiry</a>{% endif %}
                 </p>
 
             </div>
@@ -583,7 +595,11 @@
                     <li><a href="#projects">Projects</a></li>
 
                     <li><a href="{% url 'inquiry_create' %}">Contact</a></li>
-                    <li><a href="{% url 'project_create' %}">Add Project</a></li>
+                    {% if request.user.is_active and request.user.is_superuser %}
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    {% else %}
+                    <li><a href="{% url 'owner_sign_in' %}">Owner sign-in</a></li>
+                    {% endif %}
                     <li><a href="{% url 'testimony_list' %}">Testimonials</a></li>
 
                 </ul>
@@ -601,6 +617,5 @@
 
 </body>
 </html>
-
 
 

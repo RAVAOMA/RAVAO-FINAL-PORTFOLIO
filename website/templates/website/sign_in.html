@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner sign-in | Mark Ravao</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="sign-in-page">
+    <a class="brand sign-in-brand" href="{% url 'home' %}"><span class="brand-mark">MR</span> Mark Ravao</a>
+    <main class="sign-in-layout">
+        <div class="sign-in-story"><p class="eyebrow">PORTFOLIO STUDIO</p><h1>Your work.<br>Your story.<br><span>Your space.</span></h1><p>A place to keep building and share what comes next.</p><a href="{% url 'home' %}">← Back to portfolio</a></div>
+        <div class="sign-in-card"><p class="eyebrow">OWNER ACCESS</p><h2>Welcome back.</h2><p class="subtitle">Sign in to manage your projects and tech stacks.</p>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% if form.errors %}<div class="notice error" role="alert">{{ form.non_field_errors }}{% if not form.non_field_errors %}Enter your username and password.{% endif %}</div>{% endif %}
+                {% include "website/_form_field.html" with field=form.username %}
+                {% include "website/_form_field.html" with field=form.password %}
+                <button class="button primary full-width" type="submit">Sign in to dashboard →</button>
+            </form>
+            <p class="sign-in-note">For the portfolio owner only. An active superuser account is required.</p>
+        </div>
+    </main>
+</body>
+</html>

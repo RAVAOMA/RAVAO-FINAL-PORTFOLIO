@@ -1,0 +1,16 @@
+{% extends "website/dashboard_base.html" %}
+{% block content %}
+    <div class="page-heading">
+        <div><p class="eyebrow">DASHBOARD</p><h1>A home for your work.</h1><p class="subtitle">Manage the projects and technologies that tell your story.</p></div>
+        <a class="button primary" href="{% url 'dashboard_project_create' %}">+ Create project</a>
+    </div>
+    <div class="stats-grid">
+        <a class="stat-card" href="{% url 'dashboard_projects' %}"><span>Published projects</span><strong>{{ project_count }}</strong><span class="stat-link">Manage projects <span aria-hidden="true">→</span></span></a>
+        <a class="stat-card" href="{% url 'dashboard_tech_stacks' %}"><span>Tech stacks</span><strong>{{ tech_stack_count }}</strong><span class="stat-link">Explore your toolkit <span aria-hidden="true">→</span></span></a>
+        <div class="welcome-card"><p class="eyebrow">READY TO SHARE</p><h2>Build. Add. Show your work.</h2><p>New projects appear on your public portfolio as soon as you save them.</p><a href="{% url 'home' %}">View your portfolio <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <section class="panel">
+        <div class="panel-heading"><div><h2>Recent projects</h2><p>Your latest additions to the portfolio.</p></div><a href="{% url 'dashboard_projects' %}">View all projects →</a></div>
+        {% include "website/_projects_table.html" with projects=recent_projects %}
+    </section>
+{% endblock %}

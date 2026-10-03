@@ -1,43 +1,27 @@
+{% extends "website/dashboard_base.html" %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Add Project</title>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/mediaqueries.css' %}">
-</head>
-
-<body>
-    {% include "website/_page_nav.html" %}
-
-    <main class="form-page">
-        <section class="form-container">
-            <h1>Add a New Project</h1>
-
-            <p class="form-description">
-                Add another project to your portfolio.
-            </p>
-
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <div class="form-actions">
-                    <a class="page-btn" href="{% url 'project_list' %}">
-                        Cancel
-                    </a>
-
-                    <button class="page-btn primary-btn" type="submit">
-                        Save Project
-                    </button>
-                </div>
-            </form>
-        </section>
-    </main>
-</body>
-</html>
+{% block title %}Create project{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'dashboard_projects' %}">← All projects</a>
+    <div class="page-heading"><div><p class="eyebrow">MAKE IT PUBLIC</p><h1>Create a project</h1><p class="subtitle">Share what you built and the tools that made it possible.</p></div></div>
+    <div class="editor-layout">
+        <form class="panel editor-form" method="post" novalidate>
+            {% csrf_token %}
+            {% if form.errors %}<div class="notice error" role="alert">Please correct the fields below. Your project has not been saved.</div>{% endif %}
+            {{ form.non_field_errors }}
+            <p class="field-help">All fields are required.</p>
+            {% include "website/_form_field.html" with field=form.project_name %}
+            {% include "website/_form_field.html" with field=form.description %}
+            <div class="field">
+                <h2 class="field-label">Tech Stacks <span class="required" aria-hidden="true">*</span></h2>
+                <p class="field-help" id="tech-stacks-help">{{ form.tech_stacks.help_text }}</p>
+                {% if has_tech_stacks %}{{ form.tech_stacks }}{% else %}<p class="notice">Create a tech stack before adding your first project. <a href="{% url 'tech_stack_create' %}">Add a tech stack →</a></p>{% endif %}
+                {{ form.tech_stacks.errors }}
+            </div>
+            {% include "website/_form_field.html" with field=form.link %}
+            <div class="form-actions"><a class="button secondary" href="{% url 'dashboard_projects' %}">Cancel</a><button class="button primary" type="submit" {% if not has_tech_stacks %}disabled{% endif %}>Publish project</button></div>
+        </form>
+        <aside class="editor-tip"><span class="tip-symbol" aria-hidden="true">↗</span><h2>A little context goes a long way.</h2><p>Explain the problem you solved and what makes this project yours.</p><hr><p>Need another technology?</p><a href="{% url 'tech_stack_create' %}" target="_blank" rel="noopener">Create a tech stack ↗</a><p class="field-help">Opens in a new tab. Refresh this form before filling it in to see new stacks.</p></aside>
+    </div>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/tech-stack-picker.js' %}" defer></script>{% endblock %}

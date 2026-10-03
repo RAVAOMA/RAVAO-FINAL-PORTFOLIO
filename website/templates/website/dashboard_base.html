@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %} | Mark Ravao</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="workspace">
+        <aside class="sidebar">
+            <a href="{% url 'home' %}" class="brand"><span class="brand-mark">MR</span> Mark Ravao</a>
+            <p class="nav-label">PORTFOLIO STUDIO</p>
+            <nav class="side-nav" aria-label="Dashboard navigation">
+                <a href="{% url 'dashboard' %}" {% if active_page == 'overview' %}aria-current="page"{% endif %}>Overview</a>
+                <a href="{% url 'dashboard_projects' %}" {% if active_page == 'projects' %}aria-current="page"{% endif %}>Projects</a>
+                <a href="{% url 'dashboard_tech_stacks' %}" {% if active_page == 'tech_stacks' %}aria-current="page"{% endif %}>Tech stacks</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <a href="{% url 'home' %}">View portfolio <span aria-hidden="true">↗</span></a>
+                <form method="post" action="{% url 'owner_sign_out' %}">{% csrf_token %}<button class="text-button" type="submit">Sign out</button></form>
+            </div>
+        </aside>
+        <div class="workspace-body">
+            <header class="topbar"><span>Your creative workspace</span><span class="account-chip">{{ request.user.username }}</span></header>
+            <main id="main-content" class="main-content">
+                {% if messages %}<div aria-live="polite">{% for message in messages %}<p class="notice success">{{ message }}</p>{% endfor %}</div>{% endif %}
+                {% block content %}{% endblock %}
+            </main>
+            <footer class="workspace-footer">Mark Angelo Ravao <span>Portfolio management</span></footer>
+        </div>
+    </div>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
