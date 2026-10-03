@@ -42,13 +42,13 @@
 
         <div class="hamburger-menu">
 
-            <div class="hamburger-icon" onclick="toggleMenu()">
+            <button type="button" class="hamburger-icon" onclick="toggleMenu()" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             
-            <ul class="menu-links">
+            <ul class="menu-links" id="mobile-menu">
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
                 <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
@@ -617,5 +617,4 @@
 
 </body>
 </html>
-
 

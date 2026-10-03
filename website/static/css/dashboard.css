@@ -114,6 +114,25 @@ input[type=radio] { accent-color: var(--blue); margin: 0; width: 15px; height: 1
 .full-width { width: 100%; }
 .sign-in-note { color: var(--muted); font-size: 11px; text-align: center; margin: 22px 0 0; }
 [hidden] { display: none !important; }
+.field, .editor-tip, .sign-in-card, .sign-in-story { min-width: 0; }
+.project-name, .radio-option, .editor-tip, .sign-in-note { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+    input:not([type=radio]), textarea { font-size: 16px; }
+    .button, .text-button, .radio-option { min-height: 44px; }
+    .radio-option { max-width: 100%; }
+    .radio-option input { flex-shrink: 0; }
+    .sign-in-layout { width: 100%; }
+    .form-actions { flex-wrap: wrap; }
+    .form-actions .button { flex: 1 1 120px; }
+    .table-scroll { max-width: 100%; }
+}
 @media (min-width: 1600px) { .sidebar { width: 280px; } }
 @media (max-width: 1150px) { .sidebar { width: 210px; padding: 28px 16px; } .main-content { padding: 34px 26px; } .topbar { padding: 0 26px; } .stats-grid { grid-template-columns: 1fr 1fr; } .welcome-card { grid-column: span 2; } .editor-layout { grid-template-columns: 1fr; } .editor-tip { max-width: 600px; } }
 @media (max-width: 760px) { .workspace { flex-direction: column; } .sidebar { width: 100%; padding: 20px; border-right: 0; border-bottom: 1px solid var(--line); } .nav-label { display: none; } .side-nav { flex-direction: row; gap: 5px; margin-top: 18px; } .side-nav a { flex: 1; text-align: center; padding: 10px 7px; font-size: 12px; } .side-nav a[aria-current] { border-left: 0; padding-left: 7px; } .sidebar-bottom { padding: 15px 3px 0; display: flex; justify-content: space-between; font-size: 12px; } .topbar { height: 60px; padding: 0 20px; } .main-content { padding: 30px 18px; } .page-heading { align-items: flex-start; flex-direction: column; gap: 20px; } .stats-grid { gap: 12px; } .stat-card, .welcome-card { padding: 20px; } .stat-card strong { font-size: 38px; } .panel-heading { padding: 20px; } th, td { padding: 16px 20px; } .editor-form { padding: 22px 18px; } .workspace-footer { padding: 20px; font-size: 10px; } .sign-in-brand { padding: 24px; } .sign-in-layout { grid-template-columns: 1fr; gap: 32px; margin: 10px auto; padding: 20px 24px 40px; max-width: 540px; } .sign-in-story h1 { font-size: 44px; letter-spacing: -2px; } .sign-in-story > p:not(.eyebrow) { margin-bottom: 20px; } .sign-in-card { padding: 30px 24px; } }
+
+@media (max-width: 380px) {
+    .stats-grid { grid-template-columns: minmax(0, 1fr); }
+    .stats-grid .welcome-card { grid-column: auto; }
+    .sign-in-layout { padding-left: 16px; padding-right: 16px; }
+    .sign-in-card { padding: 24px 18px; }
+}
