@@ -1,0 +1,20 @@
+<div id="{{ widget.attrs.id }}" data-tech-stack-picker data-field-name="{{ widget.name }}" aria-describedby="tech-stacks-help">
+    <div data-radio-groups>
+        {% for group in widget.groups %}
+            <fieldset class="radio-group" data-radio-group>
+                <legend>Technology <span data-group-number>{{ forloop.counter }}</span></legend>
+                <div class="radio-options">
+                    {% for option in group.options %}
+                        <label class="radio-option" for="{{ widget.attrs.id }}_{{ group.index }}_{{ forloop.counter0 }}">
+                            <input type="radio" id="{{ widget.attrs.id }}_{{ group.index }}_{{ forloop.counter0 }}" name="{{ widget.name }}_{{ group.index }}" value="{{ option.value }}" {% if option.checked %}checked{% endif %} required>
+                            <span>{{ option.label }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
+                <button class="text-button remove-group" type="button" data-remove-group hidden>Remove technology</button>
+            </fieldset>
+        {% endfor %}
+    </div>
+    <button class="button secondary small" type="button" data-add-group hidden>+ Add another tech stack</button>
+    <noscript><p class="field-help">You can select one tech stack here. Enable JavaScript to select multiple stacks.</p></noscript>
+</div>

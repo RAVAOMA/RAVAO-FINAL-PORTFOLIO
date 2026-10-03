@@ -1,0 +1,17 @@
+<div class="table-scroll" tabindex="0" role="region" aria-label="Projects table">
+    <table>
+        <thead><tr><th scope="col">Project Name</th><th scope="col">Description</th><th scope="col">Tech Stacks</th><th scope="col">Link</th></tr></thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <th scope="row"><a class="project-name" href="{% url 'project_detail' project.pk %}">{{ project.project_name }}</a></th>
+                    <td>{{ project.description|truncatechars:50 }}</td>
+                    <td>{{ project.tech_stack_names|default:"—" }}</td>
+                    <td><a class="external-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer" aria-label="Visit {{ project.project_name }} (opens in a new tab)">Visit project ↗</a></td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="4"><div class="empty-state"><h3>Your next project starts here.</h3><p>Add a tech stack, then publish your first project.</p><a href="{% url 'tech_stack_create' %}">Create a tech stack →</a></div></td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -40,6 +40,8 @@
                     {{ project.project_name }}
                 </h2>
 
+                <p>{{ project.description|truncatewords:30 }}</p>
+                <p><strong>Technology stack:</strong> {{ project.tech_stack_names }}</p>
                 <br>
 
                 <a

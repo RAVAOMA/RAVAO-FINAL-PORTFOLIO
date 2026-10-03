@@ -1,0 +1,9 @@
+{% extends "website/dashboard_base.html" %}
+{% block title %}Projects{% endblock %}
+{% block content %}
+    <div class="page-heading"><div><p class="eyebrow">YOUR WORK</p><h1>Projects</h1><p class="subtitle">Everything you have built, all in one place.</p></div><a class="button primary" href="{% url 'dashboard_project_create' %}">+ Create project</a></div>
+    <section class="panel">
+        <div class="panel-heading"><h2>All projects <span class="count">{{ projects|length }}</span></h2><a href="{% url 'project_list' %}">Public view ↗</a></div>
+        {% include "website/_projects_table.html" %}
+    </section>
+{% endblock %}

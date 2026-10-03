@@ -1,0 +1,15 @@
+{% extends "website/dashboard_base.html" %}
+{% block title %}Create tech stack{% endblock %}
+{% block content %}
+    <a class="back-link" href="{% url 'dashboard_tech_stacks' %}">← All tech stacks</a>
+    <div class="page-heading"><div><p class="eyebrow">GROW YOUR TOOLKIT</p><h1>Create a tech stack</h1><p class="subtitle">A language, framework, or tool you bring to your projects.</p></div></div>
+    <form class="panel editor-form compact-form" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.errors %}<div class="notice error" role="alert">Please correct the field below. The tech stack has not been saved.</div>{% endif %}
+        {{ form.non_field_errors }}
+        <p class="field-help">All fields are required.</p>
+        {% include "website/_form_field.html" with field=form.name %}
+        <p class="notice">Add each technology once. You can select it for as many projects as you need.</p>
+        <div class="form-actions"><a class="button secondary" href="{% url 'dashboard_tech_stacks' %}">Cancel</a><button class="button primary" type="submit">Save tech stack</button></div>
+    </form>
+{% endblock %}
